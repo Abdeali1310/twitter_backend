@@ -1,13 +1,13 @@
 const { StatusCodes } = require("http-status-codes");
-const { TweetService } = require("../services");
+const { UserService } = require("../services");
 const { successResponse, errorResponse } = require("../utils/common");
 
-const tweetService = new TweetService();
+const userService = new UserService();
 
-const createTweet = async (req,res)=>{
+const signUp = async (req,res)=>{
     try {
         const data = req.body;
-        const response = await tweetService.create(data);
+        const response = await userService.signUp(data);
 
         successResponse.data = response;
         return res.status(StatusCodes.CREATED).json(successResponse)
@@ -17,10 +17,11 @@ const createTweet = async (req,res)=>{
     }
 }
 
-const getTweet = async (req,res)=>{
+const signIn = async (req,res)=>{
     try {
-        const id = req.params.id;
-        const response = await tweetService.getTweet(id);
+        const data = req.body;
+        const response = await userService.signIn(data);
+        
         successResponse.data = response;
         return res.status(StatusCodes.OK).json(successResponse)
     } catch (error) {
@@ -29,4 +30,4 @@ const getTweet = async (req,res)=>{
     }
 }
 
-module.exports = {createTweet,getTweet}
+module.exports = {signUp,signIn}
