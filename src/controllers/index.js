@@ -1,3 +1,4 @@
 module.exports = {
-    InfoController: require('./info-controller')
+    InfoController: require('./info-controller'),
+    TweetController:require('./tweet-controller')
 }

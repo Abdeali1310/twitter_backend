@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const hashSchema =new mongoose.Schema({
     text:{
         type:String,
+        required:true,
+        unique:true,
     },
     
     tweets:[

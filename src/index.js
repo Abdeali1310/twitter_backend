@@ -7,6 +7,9 @@ const { TweetRepository } = require('./repositories');
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
+
 //DB connection
 DB_CONNECT.connect().then(()=>console.log("MongoDB Connected")).catch((error)=>console.log("MongoDB Error ",error))
 
