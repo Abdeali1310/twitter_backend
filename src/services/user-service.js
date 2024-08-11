@@ -2,6 +2,8 @@ const { StatusCodes } = require("http-status-codes");
 const AppError = require("../utils/error/app-error");
 const { UserRepository } = require("../repositories");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
+const { ServerConfig } = require("../config");
 
 class UserService {
   constructor() {
@@ -49,7 +51,10 @@ class UserService {
 
       //jwt
 
-      return user[0].username;
+      const token = jwt.sign({id:user[0].id,email:user[0].email},ServerConfig.SECRET_KEY,{expiresIn:'2h'});
+
+
+      return token;
     } catch (error) {
       console.log(error);
 
