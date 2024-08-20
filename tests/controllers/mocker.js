@@ -13,3 +13,7 @@ const mockResquest = ()=>{
     req.query = jest.fn().mockReturnValue(req);
     return req;
 }
+
+module.exports = {
+    mockResponse,mockResquest
+}
